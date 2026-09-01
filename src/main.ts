@@ -16,6 +16,7 @@ import {
     setFirstRun,
     setup,
 } from "./common/config.js";
+import { startDevRendererReloadWatcher } from "./common/devReload.js";
 import { getPreset } from "./common/flags.js";
 import { setLang } from "./common/lang.js";
 import { applyProxyCommandLineSwitches, applySessionProxy, configureNodeProxyEnv } from "./common/proxy.js";
@@ -346,6 +347,7 @@ if (!app.requestSingleInstanceLock() && getConfig("multiInstance") === false) {
 
     void app.whenReady().then(async () => {
         if (isDev) console.log(JSON.stringify(getAppliedFlags()));
+        startDevRendererReloadWatcher();
         await applySessionProxy();
         process.on("SIGINT", () => app.quit());
         process.on("SIGTERM", () => app.quit());

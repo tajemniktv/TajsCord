@@ -1,9 +1,45 @@
+import { existsSync, readdirSync, statSync } from "node:fs";
+import path from "node:path";
 import solid from "@rolldown-plugin/solid";
 import esmShim from "@rollup/plugin-esm-shim";
 import { defineConfig } from "rolldown";
 import copy from "rollup-plugin-copy";
 
 const electronExternals = ["electron", "node:fs", "node:path", "node:os", "node:url", "@vencord/venmic"];
+
+function collectFiles(root: string): string[] {
+    if (!existsSync(root)) return [];
+
+    const files: string[] = [];
+    for (const entry of readdirSync(root, { withFileTypes: true })) {
+        const fullPath = path.join(root, entry.name);
+        if (entry.isDirectory()) {
+            files.push(...collectFiles(fullPath));
+        } else if (entry.isFile()) {
+            files.push(fullPath);
+        }
+    }
+    return files;
+}
+
+const copiedFilesWatch = {
+    name: "watch-copied-files",
+    buildStart(this: { addWatchFile: (id: string) => void }) {
+        // rollup-plugin-copy copies these files at buildEnd but does not register
+        // them with the watcher. Registering them keeps `rolldown --watch`
+        // useful for HTML/CSS/asset-only edits as well as TypeScript changes.
+        for (const file of [
+            ...collectFiles(path.resolve("src")).filter(
+                (candidate) => /\.(?:css|html|js)$/i.test(candidate) && !candidate.split(path.sep).includes("shelter"),
+            ),
+            ...collectFiles(path.resolve("assets")),
+            path.resolve("package.json"),
+            path.resolve("node_modules/@uwu/shelter-ui/compat.css"),
+        ]) {
+            if (statSync(file).isFile()) this.addWatchFile(file);
+        }
+    },
+};
 
 export default defineConfig([
     {
@@ -26,6 +62,7 @@ export default defineConfig([
             "stream/promises",
         ],
         plugins: [
+            copiedFilesWatch,
             esmShim(),
             copy({
                 targets: [

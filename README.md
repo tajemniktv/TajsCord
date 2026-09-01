@@ -146,8 +146,16 @@ TajsCord is also available in [Pi-Apps](https://github.com/Botspot/pi-apps).
 
  1. Clone TajsCord repo: `git clone https://github.com/tajemniktv/TajsCord.git`
  2. Run `pnpm install` to install dependencies
- 3. Build with `pnpm run build`
- 4. Compile/Package with `pnpm run package`
+ 3. For day-to-day development, run `pnpm dev` (watch builds and automatic Electron restarts)
+ 4. Build with `pnpm run build` for a clean full build
+ 5. Compile/Package with `pnpm run package`
+
+`pnpm dev` uses the isolated `TajsCord-dev` profile. Shelter plugins are only
+rebuilt when their source changes; use `pnpm start` when you intentionally need
+the complete build-and-launch path.
+
+Rider users can run the shared configurations under `.run/`: `TajsCord | Dev
+(watch + restart)`, `TajsCord | Full build`, and `TajsCord | Start`.
 
 # FAQ
 
