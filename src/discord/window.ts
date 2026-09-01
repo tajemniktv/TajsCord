@@ -20,6 +20,7 @@ import { navigateTo } from "../common/dom.js";
 import { forceQuit, setForceQuit } from "../common/forceQuit.js";
 import { handleCommands, passedValidArgument } from "../common/handleCommands.js";
 import { getLang } from "../common/lang.js";
+import { performanceInstrumentation } from "../common/performanceInstrumentation.js";
 import {
     isBlockedLocalhostWebSocket,
     isDiscordIcsBlobUrl,
@@ -304,6 +305,18 @@ function doAfterDefiningTheWindow(passedWindow: BrowserWindow): void {
         });
     }
 
+    // These are browser-observable milestones, so reports remain useful when
+    // a navigation is slower or faster than expected and never rely on sleeps.
+    passedWindow.webContents.once("did-start-loading", () => {
+        performanceInstrumentation.mark("navigation-start", { url: passedWindow.webContents.getURL() });
+    });
+    passedWindow.webContents.once("dom-ready", () => {
+        performanceInstrumentation.mark("dom-ready", { url: passedWindow.webContents.getURL() });
+    });
+    passedWindow.webContents.once("did-finish-load", () => {
+        performanceInstrumentation.mark("renderer-loaded", { url: passedWindow.webContents.getURL() });
+    });
+
     passedWindow.setTouchBar(mainTouchBar);
     app.on("open-url", (_event, url) => {
         navigateTo(passedWindow, url.replace("discord://-", ""));
@@ -575,6 +588,7 @@ export function createWindow() {
             break;
     }
     const mainWindow = new BrowserWindow(browserWindowOptions);
+    performanceInstrumentation.mark("main-window-created", { windowId: mainWindow.id });
 
     // Restore by position + size directly to match saveWindowState roundtrip.
     mainWindow.setPosition(storedBounds.x, storedBounds.y);

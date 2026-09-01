@@ -1,5 +1,6 @@
 import type { BrowserWindow } from "electron";
 import { getConfig, getStartMinimizedMode } from "./config.js";
+import { performanceInstrumentation } from "./performanceInstrumentation.js";
 
 /** Show the main window and restore taskbar/dock presence after a tray-only start. */
 export function revealWindow(win: BrowserWindow): void {
@@ -7,6 +8,7 @@ export function revealWindow(win: BrowserWindow): void {
     win.setSkipTaskbar(false);
     if (win.isMinimized()) win.restore();
     win.show();
+    performanceInstrumentation.mark("first-visible-window", { windowId: win.id });
     win.focus();
 }
 
@@ -18,6 +20,7 @@ export function applyStartupWindowVisibility(win: BrowserWindow): void {
         case "minimized":
             win.setSkipTaskbar(false);
             win.show();
+            performanceInstrumentation.mark("first-visible-window", { windowId: win.id });
             win.minimize();
             break;
         case "tray":
@@ -32,6 +35,7 @@ export function applyStartupWindowVisibility(win: BrowserWindow): void {
         default:
             win.setSkipTaskbar(false);
             win.show();
+            performanceInstrumentation.mark("first-visible-window", { windowId: win.id });
             break;
     }
 }

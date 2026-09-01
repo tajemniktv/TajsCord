@@ -157,6 +157,13 @@ the complete build-and-launch path.
 Rider users can run the shared configurations under `.run/`: `TajsCord | Dev
 (watch + restart)`, `TajsCord | Full build`, and `TajsCord | Start`.
 
+## Performance reports
+
+Development runs automatically write a structured startup/runtime report. For
+packaged builds, pass `--performance-report` (or set `TAJSCORD_PERFORMANCE=1`)
+to enable it; see [the instrumentation guide](docs/performance-instrumentation.md)
+for report contents and output-path options.
+
 # FAQ
 
 ## Do you have a support Discord?

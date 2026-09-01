@@ -19,6 +19,7 @@ import {
 import { startDevRendererReloadWatcher } from "./common/devReload.js";
 import { getPreset } from "./common/flags.js";
 import { setLang } from "./common/lang.js";
+import { performanceInstrumentation } from "./common/performanceInstrumentation.js";
 import { applyProxyCommandLineSwitches, applySessionProxy, configureNodeProxyEnv } from "./common/proxy.js";
 import { revealWindow } from "./common/windowVisibility.js";
 import { setupGlobalShortcuts, startDbusService } from "./dbus.js";
@@ -345,7 +346,15 @@ if (!app.requestSingleInstanceLock() && getConfig("multiInstance") === false) {
         trackDisableBlinkFeatures(Array.from(disableBlinkFeatures));
     }
 
+    performanceInstrumentation.configure({
+        performancePreset: getConfig("performanceMode") ?? "unknown",
+        mods: getConfig("mods") ?? [],
+        flags: getAppliedFlags(),
+    });
+
     void app.whenReady().then(async () => {
+        performanceInstrumentation.mark("electron-ready");
+        performanceInstrumentation.startRuntimeSampling();
         if (isDev) console.log(JSON.stringify(getAppliedFlags()));
         startDevRendererReloadWatcher();
         await applySessionProxy();

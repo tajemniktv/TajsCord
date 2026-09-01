@@ -6,6 +6,7 @@ import "./mods/equicord.mjs";
 import "./mods/custom.mjs";
 import "./plugins.mjs";
 import "./patches.mjs";
+import "./performance.mjs";
 import "./newTitlebar.mjs";
 import "./titlebar.mjs";
 import "./themes.js";
