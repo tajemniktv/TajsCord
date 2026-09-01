@@ -82,7 +82,7 @@ export interface Settings {
     quickCss: boolean;
     autoScroll: boolean;
     additionalArguments: string;
-    /** How Legcord resolves HTTP(S) proxies (Chromium + main-process fetch). */
+    /** How TajsCord resolves HTTP(S) proxies (Chromium + main-process fetch). */
     proxyMode: ProxyMode;
     /** Fixed proxy rules, e.g. `http://127.0.0.1:8080` or `socks5://host:1080`. */
     proxyRules: string;

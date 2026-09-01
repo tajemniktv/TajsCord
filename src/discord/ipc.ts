@@ -7,6 +7,7 @@ import isDev from "electron-is-dev";
 import type { Keybind } from "../@types/keybind.js";
 import type { Settings } from "../@types/settings.js";
 import type { ThemeManifest } from "../@types/themeManifest.js";
+import { APP_IDENTITY } from "../common/appIdentity.js";
 import {
     applyBackupFromMap,
     type BackupSavePayload,
@@ -374,7 +375,7 @@ export function registerIpc(passedWindow: BrowserWindow): void {
     ipcMain.on("copyDebugInfo", () => {
         const settingsFileContent = readFileSync(getConfigLocation(), "utf-8");
         clipboard.writeText(
-            `**OS:** ${os.platform()} ${os.version()}\n**Architecture:** ${os.arch()}\n**Legcord version:** ${getVersion()}\n**Electron version:** ${
+            `**OS:** ${os.platform()} ${os.version()}\n**Architecture:** ${os.arch()}\n**${APP_IDENTITY.productName} version:** ${getVersion()}\n**Electron version:** ${
                 process.versions.electron
             }\n\`${settingsFileContent}\``,
         );
@@ -524,7 +525,7 @@ export function registerIpc(passedWindow: BrowserWindow): void {
                     title: getLang("backup-dialogSave-title"),
                     defaultPath: path.join(
                         app.getPath("documents"),
-                        `legcord-backup-${new Date().toISOString().slice(0, 10)}.zip`,
+                        `tajs-cord-backup-${new Date().toISOString().slice(0, 10)}.zip`,
                     ),
                     filters: [{ name: "ZIP", extensions: ["zip"] }],
                 });

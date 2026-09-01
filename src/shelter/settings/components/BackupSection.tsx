@@ -74,21 +74,21 @@ function BackupOptionsModal(props: { close: () => void; onConfirm: (includes: In
                     {t["splash-title"]}
                 </Header>
                 <SwitchItem hideBorder value={inc().legcordConfig} onChange={(v: boolean) => patch("legcordConfig", v)}>
-                    {t["backup-includeLegcordConfig"]}
+                    {t["backup-includeTajsCordConfig"]}
                 </SwitchItem>
                 <SwitchItem
                     hideBorder
                     value={inc().legcordThemesAndQuickCss}
                     onChange={(v: boolean) => patch("legcordThemesAndQuickCss", v)}
                 >
-                    {t["backup-includeLegcordThemes"]}
+                    {t["backup-includeTajsCordThemes"]}
                 </SwitchItem>
                 <SwitchItem
                     hideBorder
                     value={inc().legcordExtensionPlugins}
                     onChange={(v: boolean) => patch("legcordExtensionPlugins", v)}
                 >
-                    {t["backup-includeLegcordPlugins"]}
+                    {t["backup-includeTajsCordPlugins"]}
                 </SwitchItem>
                 <Divider mt mb />
                 <SwitchItem

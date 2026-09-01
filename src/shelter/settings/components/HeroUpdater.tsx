@@ -1,15 +1,16 @@
 import { createSignal } from "solid-js";
+import { APP_IDENTITY } from "../../../common/appIdentity.js";
 import classes from "./HeroUpdater.module.css";
 
 const {
     ui: { Button, ButtonSizes, Header, HeaderTags, Text, ButtonColors },
 } = shelter;
-const LOGO_URL = "https://github.com/Legcord/Branding/raw/main/assets/legcord-banner.png";
+const LOGO_URL = "legcord://assets/desktop.png";
 
 async function checkForUpdates() {
-    const response = await fetch("https://legcord.app/latest.json");
+    const response = await fetch(APP_IDENTITY.latestReleaseApiUrl);
     const data = await response.json();
-    const remoteVersion = data.version.replace(/\./g, ""); // easy to compare
+    const remoteVersion = (data.tag_name ?? data.name ?? "").replace(/^v/, "").replace(/\./g, ""); // easy to compare
     if (remoteVersion > window.legcord.version.replace(/\./g, "")) {
         return true;
     } else {
@@ -17,7 +18,7 @@ async function checkForUpdates() {
     }
 }
 
-const DOWNLOAD_URL = "https://legcord.app/download";
+const DOWNLOAD_URL = APP_IDENTITY.releasesUrl;
 
 export const HeroUpdater = () => {
     const [checking, setChecking] = createSignal(false);

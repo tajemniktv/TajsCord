@@ -1,7 +1,7 @@
 import electron from "electron";
 import { getConfig } from "../../common/config.js";
 
-const LEGCORD_CSP = [
+const TAJSCORD_CSP = [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://*.discord.com https://discord.com https://*.githubusercontent.com https://*.github.com",
     "style-src 'self' 'unsafe-inline' https://*.discord.com https://discord.com https://fonts.googleapis.com",
@@ -25,7 +25,7 @@ function setupStrictCSP() {
             if (!responseHeaders) return callback({});
 
             if (resourceType === "mainFrame") {
-                responseHeaders["content-security-policy"] = [LEGCORD_CSP];
+                responseHeaders["content-security-policy"] = [TAJSCORD_CSP];
             } else if (resourceType === "stylesheet") {
                 // Fix hosts that don't properly set the css content type, such as
                 // raw.githubusercontent.com

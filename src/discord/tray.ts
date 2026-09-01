@@ -42,7 +42,7 @@ export function createTray() {
             type: "separator",
         },
         {
-            label: getLang("tray-openLegcord"),
+            label: getLang("tray-openTajsCord"),
             click() {
                 mainWindows.forEach((mainWindow) => {
                     revealWindow(mainWindow);
@@ -69,13 +69,13 @@ export function createTray() {
             type: "separator",
         },
         {
-            label: getLang("tray-restartLegcord"),
+            label: getLang("tray-restartTajsCord"),
             click() {
                 handleRestart();
             },
         },
         {
-            label: getLang("tray-quitLegcord"),
+            label: getLang("tray-quitTajsCord"),
             click() {
                 setForceQuit(true);
                 app.quit();

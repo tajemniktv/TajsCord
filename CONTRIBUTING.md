@@ -1,6 +1,6 @@
-# Contributing to Legcord
+# Contributing to TajsCord
 
-Legcord is an opinionated project. We welcome contributions from everyone, but we want your effort to land successfully and match the direction of the project.
+TajsCord is an opinionated project. We welcome contributions from everyone, but we want your effort to land successfully and match the direction of the project.
 
 This guide explains what maintainers look for in pull requests, based on existing code patterns and CI rules.
 
@@ -14,8 +14,8 @@ If you are fixing a critical bug or security issue, you may open fixes for both 
 ## Before you start a feature
 
 - Check open pull requests for overlap.
-- Check [GitHub enhancement issues](https://github.com/Legcord/Legcord/issues?q=label%3Aenhancement) and the [feature requests Discord channel](https://discord.com/channels/820732039253852171/1261471243123818566).
-- If the feature does not exist yet, [open an issue](https://github.com/Legcord/Legcord/issues), say you want to implement it, and wait for feedback before writing large changes.
+- Check [GitHub enhancement issues](https://github.com/tajemniktv/TajsCord/issues?q=label%3Aenhancement) and the [feature requests Discord channel](https://discord.com/channels/820732039253852171/1261471243123818566).
+- If the feature does not exist yet, [open an issue](https://github.com/tajemniktv/TajsCord/issues), say you want to implement it, and wait for feedback before writing large changes.
 - Familiarize yourself with the codebase rules below.
 
 ## Codebase rules
@@ -56,7 +56,7 @@ If you are fixing a critical bug or security issue, you may open fixes for both 
 
 ### Cross-platform expectations
 
-- Legcord ships on Linux, macOS, and Windows. Keep platform-specific behavior safe and scoped.
+- TajsCord ships on Linux, macOS, and Windows. Keep platform-specific behavior safe and scoped.
 - If your change is platform-specific, explicitly mention tested platform(s) in your PR.
 - If you cannot test a platform, state that clearly so reviewers know what remains unverified.
 

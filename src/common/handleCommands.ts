@@ -51,7 +51,7 @@ export function handleAction(action: ValidActions): void {
 }
 
 /**
- * Handles command line arguments and applies actions accordingly, without spawning a new Legcord instance.
+ * Handles command line arguments and applies actions accordingly, without spawning a new TajsCord instance.
  *
  * @export
  * @param {string[]} args List of all arguments to treat as possible commands

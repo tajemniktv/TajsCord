@@ -138,7 +138,7 @@ contextBridge.exposeInMainWorld("legcord", {
     fs: {
         /**
          * Write a file in this plugin's scoped storage (e.g. "cache/deleted-messages.json").
-         * Only works when the user has enabled "Extended plugin abilities" in Legcord settings.
+         * Only works when the user has enabled "Extended plugin abilities" in TajsCord settings.
          * @param pluginId - Your plugin id (alphanumeric, dash, underscore only)
          * @param relativePath - Path relative to plugin storage (no ".." allowed)
          * @returns { ok: true } or { ok: false, error: "EXTENSION_DISABLED" | "INVALID_PATH" | ... }
@@ -149,7 +149,7 @@ contextBridge.exposeInMainWorld("legcord", {
             >,
         /**
          * Read a file from this plugin's scoped storage.
-         * Only works when the user has enabled "Extended plugin abilities" in Legcord settings.
+         * Only works when the user has enabled "Extended plugin abilities" in TajsCord settings.
          * @param pluginId - Your plugin id
          * @param relativePath - Path relative to plugin storage
          * @returns { ok: true, data: string } or { ok: false, error: "EXTENSION_DISABLED" | "NOT_FOUND" | ... }

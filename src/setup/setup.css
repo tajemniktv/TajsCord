@@ -9,7 +9,7 @@
     --font-weight-extrabold: 800;
     --saturation-factor: 1;
 
-    /* Soft Legcord purple accents (kept quiet) */
+    /* Soft TajsCord purple accents (kept quiet) */
     --setup-purple: var(--blurple-50);
     --setup-purple-soft: rgba(88, 101, 242, 0.14);
     --setup-purple-glow: rgba(114, 137, 218, 0.18);

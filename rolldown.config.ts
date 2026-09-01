@@ -7,7 +7,7 @@ const electronExternals = ["electron", "node:fs", "node:path", "node:os", "node:
 
 export default defineConfig([
     {
-        input: "src/main.ts",
+        input: "src/bootstrap.ts",
         output: {
             dir: "ts-out",
             format: "esm",

@@ -115,7 +115,7 @@ export interface LegcordWindow {
         reload: (id: string) => Promise<{ ok: boolean }>;
         openFolder: () => void;
     };
-    /** Plugin storage API. Requires user to enable "Extended plugin abilities" in Legcord settings. */
+    /** Plugin storage API. Requires user to enable "Extended plugin abilities" in TajsCord settings. */
     fs: {
         writeFile: (
             pluginId: string,

@@ -1,4 +1,4 @@
-// dirty hack to replace Vencord's quick css editor with Legcord's
+// dirty hack to replace Vencord's quick css editor with TajsCord's
 // fixes the white window bug
 
 if (window.VencordNative) {
@@ -9,8 +9,8 @@ if (window.VencordNative) {
     VencordNative.quickCss.openEditor = function openEditor() {
         shelter.ui.openConfirmationModal({
             header: () => "Vencord QuickCSS is not compatible",
-            body: () => `Vencord’s QuickCSS editor is not supported in Legcord. Legcord uses its own Quick CSS editor instead which can be found in it's respective themes section.
-                Would you like to import your existing Vencord CSS into Legcord?`,
+            body: () => `Vencord’s QuickCSS editor is not supported in TajsCord. TajsCord uses its own Quick CSS editor instead which can be found in it's respective themes section.
+                Would you like to import your existing Vencord CSS into TajsCord?`,
             type: "danger",
             confirmText: "Import CSS",
             cancelText: "Cancel"

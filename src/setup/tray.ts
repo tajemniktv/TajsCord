@@ -1,6 +1,7 @@
 import { unlink } from "node:fs";
 import { join } from "node:path";
 import { app, Menu, nativeImage, Tray } from "electron";
+import { APP_IDENTITY } from "../common/appIdentity.js";
 import { getConfigLocation } from "../common/config.js";
 
 export let tray: Tray;
@@ -28,7 +29,7 @@ void app.whenReady().then(() => {
             enabled: false,
         },
         {
-            label: "Quit Legcord",
+            label: `Quit ${APP_IDENTITY.productName}`,
             click() {
                 unlink(getConfigLocation(), (err) => {
                     if (err) throw err;

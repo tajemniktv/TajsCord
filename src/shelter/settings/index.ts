@@ -27,7 +27,7 @@ let settingsCleanups: (() => void)[] = [];
 function registerSections(): (() => void)[] {
     const array = [
         registerSection("divider"),
-        registerSection("header", "Legcord"),
+        registerSection("header", "TajsCord"),
         registerSection("section", "legcord-settings", "Settings", SettingsPage, { icon: SettingsSidebarIcon }),
         registerSection("section", "legcord-themes", "Themes", ThemesPage, { icon: ThemesSidebarIcon }),
         registerSection("section", "legcord-keybinds", "Keybinds", KeybindsPage, { icon: KeybindsSidebarIcon }),
@@ -62,7 +62,7 @@ export function onLoad() {
     refreshThemes();
     // used for restart required dialog later
     store.i18n = window.legcord.translations;
-    log("Legcord Settings");
+    log("TajsCord Settings");
     window.legcord.settings.setLang(storesFlat.LocaleStore.locale);
     settingsCleanups = registerSections();
     dispatcher.subscribe("TRACK", restartRequired);

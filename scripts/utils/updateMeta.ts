@@ -8,6 +8,7 @@ import { promises as fs } from "node:fs";
 
 import { DOMParser, XMLSerializer } from "@xmldom/xmldom";
 import xmlFormat from "xml-formatter";
+import { APP_IDENTITY } from "../../src/common/appIdentity.ts";
 
 function generateDescription(description: string, descriptionNode: Element) {
     const lines = description.replace(/\r/g, "").split("\n");
@@ -43,7 +44,7 @@ function generateDescription(description: string, descriptionNode: Element) {
     }
 }
 
-const latestReleaseInformation = await fetch("https://api.github.com/repos/Legcord/Legcord/releases/latest", {
+const latestReleaseInformation = await fetch(APP_IDENTITY.latestReleaseApiUrl, {
     headers: {
         Accept: "application/vnd.github+json",
         "X-Github-Api-Version": "2022-11-28",
@@ -61,7 +62,8 @@ if (
     process.exit(0);
 }
 
-const metaInfo = await fs.readFile("./meta/app.legcord.Legcord.metainfo.xml", "utf-8");
+const metaInfoPath = `./meta/${APP_IDENTITY.appId}.metainfo.xml`;
+const metaInfo = await fs.readFile(metaInfoPath, "utf-8");
 
 const parser = new DOMParser().parseFromString(metaInfo, "text/xml");
 
@@ -101,4 +103,4 @@ const output = xmlFormat(new XMLSerializer().serializeToString(parser), {
     indentation: "  ",
 });
 
-await fs.writeFile("./meta/app.legcord.Legcord.metainfo.xml", output, "utf-8");
+await fs.writeFile(metaInfoPath, output, "utf-8");

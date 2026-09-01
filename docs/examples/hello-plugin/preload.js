@@ -1,6 +1,6 @@
 /**
  * Preload entry example.
- * Runs in Legcord preload context with access to DOM and plugin API.
+ * Runs in TajsCord preload context with access to DOM and plugin API.
  */
 module.exports.activate = (api) => {
     api.logger.log("preload entry active");

@@ -65,14 +65,14 @@ function layerPop() {
 }
 
 export function onLoad() {
-    log("Legcord Titlebar Controller");
+    log("TajsCord Titlebar Controller");
     if (settings.windowStyle === "default") {
         document.body.setAttribute("customTitlebar", "");
         injectButtonControls();
         return;
     }
 
-    // Native + transparency on macOS uses the same overlay chrome as "overlay" (Legcord#1095).
+    // Native + transparency on macOS uses the same overlay chrome as "overlay".
     const overlayLike =
         settings.windowStyle === "overlay" ||
         (settings.windowStyle === "native" && window.legcord.platform === "darwin" && settings.transparency !== "none");

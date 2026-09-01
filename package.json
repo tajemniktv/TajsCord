@@ -1,8 +1,8 @@
 {
-    "name": "legcord",
+    "name": "tajscord",
     "version": "1.3.0",
-    "description": "Legcord is a custom client designed to enhance your Discord experience while keeping everything lightweight.",
-    "main": "ts-out/main.js",
+    "description": "TajsCord is a custom client designed to enhance your Discord experience while keeping everything lightweight.",
+    "main": "ts-out/bootstrap.js",
     "engines": {
         "node": ">=26"
     },
@@ -10,8 +10,8 @@
         "build:dev": "rollup -c --environment BUILD:dev && node --experimental-strip-types scripts/copyVenmic.ts",
         "build:plugins": "lune ci --repoSubDir src/shelter --to ts-out/plugins",
         "build": "pnpm build:plugins && rolldown -c rolldown.config.ts && node --experimental-strip-types scripts/copyVenmic.ts",
-        "start": "pnpm run build && electron --trace-warnings --ozone-platform-hint=auto ./ts-out/main.js",
-        "startThemeManager": "pnpm run build:dev && electron ./ts-out/main.js themes",
+        "start": "pnpm run build && electron --trace-warnings --ozone-platform-hint=auto ./ts-out/bootstrap.js",
+        "startThemeManager": "pnpm run build:dev && electron ./ts-out/bootstrap.js themes",
         "package": "pnpm run build && electron-builder",
         "packageQuick": "pnpm run build && electron-builder --dir",
         "lint": "biome check",
@@ -22,15 +22,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Legcord/Legcord.git"
+        "url": "git+https://github.com/tajemniktv/TajsCord.git"
     },
     "author": "smartfrigde",
     "license": "OSL-3.0",
     "type": "module",
     "bugs": {
-        "url": "https://github.com/Legcord/Legcord/issues"
+        "url": "https://github.com/tajemniktv/TajsCord/issues"
     },
-    "homepage": "https://github.com/Legcord/Legcord#readme",
+    "homepage": "https://github.com/tajemniktv/TajsCord#readme",
     "devDependencies": {
         "@biomejs/biome": "2.5.5",
         "@rolldown-plugin/solid": "^0.1.0",

@@ -53,9 +53,9 @@ function generateCopyrightFile(config: CopyrightConfig): string {
  */
 export default function (): string {
     const copyrightContent: string = generateCopyrightFile({
-        upstreamName: "Legcord",
-        source: "https://github.com/Legcord/Legcord",
-        copyrightHolder: `2020 - ${new Date().getFullYear()} Legcord Contributors`, // git log --reverse
+        upstreamName: "TajsCord",
+        source: "https://github.com/tajemniktv/TajsCord",
+        copyrightHolder: `2020 - ${new Date().getFullYear()} TajsCord Contributors`, // git log --reverse
         licenseId: "OSL-3.0",
         comment: "Open-Source Discord client alternative.",
     });

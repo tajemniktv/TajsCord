@@ -1,4 +1,5 @@
 import { createSignal, For, onMount } from "solid-js";
+import { APP_IDENTITY } from "../../../common/appIdentity.js";
 import classes from "./SupportBanner.module.css";
 
 const {
@@ -20,7 +21,7 @@ export const AboutPopup = (props: { close: () => void }) => {
     const [error, setError] = createSignal<string | null>(null);
 
     onMount(() => {
-        fetch("https://api.github.com/repos/Legcord/Legcord/contributors")
+        fetch(`https://api.github.com/repos/${APP_IDENTITY.repository.owner}/${APP_IDENTITY.repository.name}/contributors`)
             .then((response) => {
                 if (!response.ok) throw new Error("Failed to fetch contributors");
                 return response.json();
@@ -124,7 +125,7 @@ export const AboutPopup = (props: { close: () => void }) => {
                             <button
                                 type="button"
                                 class={classes.quickActionButton}
-                                onClick={() => window.open("https://github.com/Legcord/Legcord", "_blank")}
+                                onClick={() => window.open(APP_IDENTITY.repository.url, "_blank")}
                             >
                                 <span class={classes.quickActionButtonIcon}>
                                     <svg
@@ -144,7 +145,7 @@ export const AboutPopup = (props: { close: () => void }) => {
                                 </span>
                                 <span class={classes.quickActionButtonLabel}>
                                     <span class={classes.quickActionButtonTitle}>View Source Code</span>
-                                    <span class={classes.quickActionButtonDesc}>github.com/Legcord/Legcord</span>
+                                    <span class={classes.quickActionButtonDesc}>github.com/tajemniktv/TajsCord</span>
                                 </span>
                                 <svg
                                     class={classes.quickActionButtonArrow}
@@ -288,7 +289,7 @@ export const AboutPopup = (props: { close: () => void }) => {
                     </div>
 
                     <div class={classes.aboutFooter}>
-                        <span>Copyright &copy; Legcord 2024-2026 &middot; OSL-3.0</span>
+                        <span>Copyright &copy; TajsCord 2024-2026 &middot; OSL-3.0</span>
                     </div>
                 </div>
             </ModalBody>

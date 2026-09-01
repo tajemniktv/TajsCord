@@ -1,6 +1,6 @@
-# Legcord Clipboard Fallback Plugin
+# TajsCord Clipboard Fallback Plugin
 
-Fixes Discord in-page copy actions in Legcord, including:
+Fixes Discord in-page copy actions in TajsCord, including:
 
 - Copy User ID
 - Copy Message ID
@@ -9,7 +9,7 @@ Fixes Discord in-page copy actions in Legcord, including:
 
 ## Why this exists
 
-In affected Legcord/Electron environments, Discord's web UI calls:
+In affected TajsCord/Electron environments, Discord's web UI calls:
 
 ```js
 navigator.clipboard.writeText(text)
@@ -21,7 +21,7 @@ but Chromium rejects it, commonly with errors like:
 NotAllowedError: Failed to execute 'writeText' on 'Clipboard': Document is not focused.
 ```
 
-or Legcord logs:
+or TajsCord logs:
 
 ```text
 Unable to determine render window for element [object HTMLDocument]
@@ -31,14 +31,14 @@ This plugin patches `navigator.clipboard.writeText` in the Discord page and fall
 
 ## Known limitation
 
-Legcord's native **Copy Image** context-menu action does not go through `navigator.clipboard.writeText` or `navigator.clipboard.write` in the page. It is handled by Electron's main-process context menu (`webContents.copyImageAt(...)`), so a renderer/custom-bundle plugin cannot reliably fix image copying. That needs a Legcord main-process fix or a filesystem plugin with main/preload access on newer Legcord versions.
+TajsCord's native **Copy Image** context-menu action does not go through `navigator.clipboard.writeText` or `navigator.clipboard.write` in the page. It is handled by Electron's main-process context menu (`webContents.copyImageAt(...)`), so a renderer/custom-bundle plugin cannot reliably fix image copying. That needs a TajsCord main-process fix or a filesystem plugin with main/preload access on newer TajsCord versions.
 
-## Install on Legcord versions with filesystem plugins
+## Install on TajsCord versions with filesystem plugins
 
-1. Open the Legcord plugins folder:
+1. Open the TajsCord plugins folder:
 
    ```text
-   ~/Library/Application Support/legcord/plugins
+   ~/Library/Application Support/TajsCord/plugins
    ```
 
 2. Create this folder:
@@ -54,23 +54,23 @@ Legcord's native **Copy Image** context-menu action does not go through `navigat
    renderer.js
    ```
 
-4. Restart Legcord.
-5. Enable **Clipboard Fallback** in Legcord's plugin settings.
+4. Restart TajsCord.
+5. Enable **Clipboard Fallback** in TajsCord's plugin settings.
 
-## Older Legcord workaround: custom bundle
+## Older TajsCord workaround: custom bundle
 
-If your Legcord version does not have filesystem plugins yet, copy `custom-bundle.js` into:
+If your TajsCord version does not have filesystem plugins yet, copy `custom-bundle.js` into:
 
 ```text
-~/Library/Application Support/legcord/custom.js
+~/Library/Application Support/TajsCord/custom.js
 ```
 
-Do **not** use `renderer.js` as `custom.js`; `renderer.js` is the filesystem-plugin entry and expects Legcord's plugin loader to provide `module.exports`.
+Do **not** use `renderer.js` as `custom.js`; `renderer.js` is the filesystem-plugin entry and expects TajsCord's plugin loader to provide `module.exports`.
 
 and add `"custom"` to the `mods` array in:
 
 ```text
-~/Library/Application Support/legcord/storage/settings.json
+~/Library/Application Support/TajsCord/storage/settings.json
 ```
 
 Example:
@@ -79,4 +79,4 @@ Example:
 "mods": ["equicord", "custom"]
 ```
 
-Then restart Legcord.
+Then restart TajsCord.

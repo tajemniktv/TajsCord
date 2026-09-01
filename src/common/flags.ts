@@ -314,9 +314,9 @@ function applyPlatformVideoStack(base: Preset | undefined): Preset | undefined {
 /**
  * Load custom flags from JSON file in user data directory (cached after first load)
  * Path:
- *   - Windows: %APPDATA%\legcord\flags.json (typically C:\Users\{username}\AppData\Roaming\legcord\flags.json)
- *   - macOS: ~/Library/Application Support/legcord/flags.json
- *   - Linux: ~/.config/legcord/flags.json
+ *   - Windows: %APPDATA%\TajsCord-dev\flags.json during development, or %APPDATA%\TajsCord\flags.json when packaged
+ *   - macOS: ~/Library/Application Support/TajsCord-dev/flags.json during development, or TajsCord when packaged
+ *   - Linux: ~/.config/TajsCord-dev/flags.json during development, or TajsCord when packaged
  * Returns an empty preset if file doesn't exist or is invalid
  */
 function loadCustomFlags(): Preset {

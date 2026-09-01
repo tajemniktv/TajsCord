@@ -50,7 +50,7 @@ export function SettingsPage() {
                 </p>
                 <br />
                 <Button size={ButtonSizes.MAX} onClick={() => window.legcord.restart()}>
-                    Restart Legcord
+                    Restart TajsCord
                 </Button>
             </>
         );
@@ -218,7 +218,7 @@ export function SettingsPage() {
                         onChange={(v) => setConfig("csp", v as Settings["csp"], true)}
                         title={t["settings-csp"]}
                         note={t["settings-csp-desc"]}
-                        link="https://github.com/Legcord/Legcord/wiki/CSP-Options"
+                        link="https://github.com/tajemniktv/TajsCord/wiki/CSP-Options"
                         options={[
                             { label: t["settings-csp-none"], value: "none" },
                             { label: t["settings-csp-strict"], value: "strict" },
@@ -271,7 +271,7 @@ export function SettingsPage() {
                         onChange={(v) => setConfig("windowStyle", v as Settings["windowStyle"], true)}
                         title={t["settings-theme"]}
                         note={t["settings-theme-desc"]}
-                        link="https://github.com/Legcord/Legcord/wiki/Settings-%5Bwip%5D#legcord-theme"
+                        link="https://github.com/tajemniktv/TajsCord/wiki/Settings-%5Bwip%5D#legcord-theme"
                         options={[
                             { label: t["settings-theme-default"], value: "default" },
                             { label: t["settings-theme-native"], value: "native" },
@@ -297,7 +297,7 @@ export function SettingsPage() {
                         onChange={(v) => setConfig("transparency", v as Settings["transparency"], true)}
                         title={t["settings-transparency"]}
                         note={t["settings-transparency-desc"]}
-                        link="https://github.com/Legcord/Legcord/wiki/Transparency-options"
+                                    link="https://github.com/tajemniktv/TajsCord/wiki/Transparency-options"
                         extraItems={
                             <Show
                                 when={
@@ -348,7 +348,7 @@ export function SettingsPage() {
                             onChange={(v) => setConfig("windowMaterial", v as Settings["windowMaterial"], true)}
                             title={t["settings-material"]}
                             note={t["settings-material-desc"]}
-                            link="https://github.com/Legcord/Legcord/wiki/Settings-%5Bwip%5D#legcord-theme"
+                            link="https://github.com/tajemniktv/TajsCord/wiki/Settings-%5Bwip%5D#legcord-theme"
                             options={[
                                 { label: t["settings-material-mica"], value: "mica" },
                                 { label: t["settings-material-mica-alt"], value: "tabbed" },
@@ -552,7 +552,7 @@ export function SettingsPage() {
                         onChange={(v) => setConfig("performanceMode", v as Settings["performanceMode"], true)}
                         title={t["settings-prfmMode"]}
                         note={t["settings-prfmMode-desc"]}
-                        link="https://github.com/Legcord/Legcord/blob/dev/src/common/flags.ts"
+                        link="https://github.com/tajemniktv/TajsCord/blob/dev/src/common/flags.ts"
                         options={[
                             { label: t["settings-prfmMode-dynamic"], value: "dynamic" },
                             { label: t["settings-prfmMode-performance"], value: "performance" },

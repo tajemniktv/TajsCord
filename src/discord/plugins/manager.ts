@@ -3,6 +3,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { app, BrowserWindow, dialog, ipcMain, shell } from "electron";
 import { after, before, instead } from "spitroast/dist/index.mjs";
+import { APP_IDENTITY } from "../../common/appIdentity.js";
 import { getConfig, setConfig } from "../../common/config.js";
 
 type PluginTarget = "main" | "preload" | "renderer";
@@ -50,7 +51,7 @@ interface PluginMainApi {
 }
 
 const pluginFolder = path.join(app.getPath("userData"), "/plugins");
-const currentLegcordVersion = app.getVersion();
+const currentAppVersion = app.getVersion();
 const records = new Map<string, PluginRecord>();
 const VALID_PLUGIN_ID = /^[a-zA-Z0-9._-]{1,64}$/;
 const VALID_ENTRY_PATH = /^[^<>:"|?*\0]+$/;
@@ -136,11 +137,11 @@ function getCompatibility(manifest: PluginManifest): { compatible: boolean; mess
     if (!supported || supported.length === 0) {
         return { compatible: true };
     }
-    const compatible = supported.some((pattern) => isCompatibleVersion(pattern, currentLegcordVersion));
+    const compatible = supported.some((pattern) => isCompatibleVersion(pattern, currentAppVersion));
     if (compatible) return { compatible: true };
     return {
         compatible: false,
-        message: `Incompatible with Legcord ${currentLegcordVersion} (supports: ${supported.join(", ")})`,
+        message: `Incompatible with ${APP_IDENTITY.productName} ${currentAppVersion} (supports: ${supported.join(", ")})`,
     };
 }
 

@@ -7,7 +7,7 @@ const windowStyle = ipcRenderer.sendSync("getConfig", "windowStyle") as string;
 const transparency = ipcRenderer.sendSync("getConfig", "transparency") as string;
 const os = ipcRenderer.sendSync("getOS") as string;
 
-// Native + transparency on macOS uses overlay chrome (see createWindow / Legcord#1095).
+// Native + transparency on macOS uses overlay chrome (see createWindow).
 const usesOverlayChrome =
     windowStyle === "default" ||
     windowStyle === "overlay" ||

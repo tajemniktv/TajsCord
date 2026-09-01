@@ -1,8 +1,9 @@
-import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { platform } from "node:os";
-import { dirname, join } from "node:path";
+import { join } from "node:path";
 import { app, dialog } from "electron";
 import type { Settings } from "../@types/settings.js";
+import { APP_IDENTITY } from "./appIdentity.js";
 import { getLang } from "./lang.js";
 import { getWindowStateLocation } from "./windowState.js";
 export let firstRun: boolean;
@@ -54,8 +55,8 @@ const defaults: Settings = {
     inviteWebsocket: true,
     startMinimized: "off",
     disableHttpCache: false,
-    customJsBundle: "https://legcord.app/placeholder.js",
-    customCssBundle: "https://legcord.app/placeholder.css",
+    customJsBundle: `${APP_IDENTITY.rawContentBaseUrl}/assets/placeholder.js`,
+    customCssBundle: `${APP_IDENTITY.rawContentBaseUrl}/assets/placeholder.css`,
     disableAutogain: false,
     autoHideMenuBar: true,
     blockPowerSavingInVoiceChat: false,
@@ -99,14 +100,6 @@ const safeMode: Settings = {
     showExperimentalPluginMenu: false,
     quickCss: false,
 };
-
-export function checkForDataFolder(): void {
-    const dataPath = join(dirname(app.getPath("exe")), "legcord-data");
-    if (existsSync(dataPath) && statSync(dataPath).isDirectory()) {
-        console.log("Found legcord-data folder. Running in portable mode.");
-        app.setPath("userData", dataPath);
-    }
-}
 
 export function getConfigLocation(): string {
     const userDataPath = app.getPath("userData");
@@ -175,15 +168,15 @@ export function checkIfConfigExists(): void {
                 mkdirSync(storagePath);
                 console.log("Created missing storage folder");
             }
-            console.log("First run of the Legcord. Starting setup.");
+            console.log(`First run of ${APP_IDENTITY.productName}. Starting setup.`);
             setup();
             firstRun = true;
         } else if (!getConfig("doneSetup")) {
-            console.log("First run of the Legcord. Starting setup.");
+            console.log(`First run of ${APP_IDENTITY.productName}. Starting setup.`);
             setup();
             firstRun = true;
         } else {
-            console.log("Legcord has been run before. Skipping setup.");
+            console.log(`${APP_IDENTITY.productName} has been run before. Skipping setup.`);
         }
     } catch {
         checkIfConfigIsBroken();
@@ -242,7 +235,7 @@ export function checkIfConfigIsBroken(): void {
 }
 
 export function setup(): void {
-    console.log("Setting up temporary Legcord settings.");
+    console.log(`Setting up temporary ${APP_IDENTITY.productName} settings.`);
     setConfigBulk({
         ...defaults,
     });

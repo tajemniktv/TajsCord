@@ -45,7 +45,7 @@
     pointer-events: none;
 }
 
-/* Legcord on Linux */
+/* TajsCord on Linux */
 [legcord-platform="linux"] .container-2RRFHK {
     padding-top: 45px;
     top: -45px;
@@ -141,7 +141,7 @@
     transition: 0.1s ease;
 }
 
-/* Legcord on Windows */
+/* TajsCord on Windows */
 [legcord-platform="win32"] .titlebar #window-controls-container {
     width: 142px;
 }
@@ -224,7 +224,7 @@
         no-repeat 50% 50%;
 }
 
-/* Legcord on macOS */
+/* TajsCord on macOS */
 
 [legcord-platform="darwin"] .sidebar-1tnWFu {
     border-top-left-radius: 0px;

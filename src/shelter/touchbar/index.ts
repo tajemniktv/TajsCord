@@ -31,7 +31,7 @@ function getAllGuilds() {
 
 export function onLoad() {
     if (window.legcord.platform === "darwin") {
-        log("Legcord Touchbar Integration");
+        log("TajsCord Touchbar Integration");
         updateVoiceState();
         dispatcher.subscribe("TRACK", track);
         dispatcher.subscribe("AUDIO_TOGGLE_SELF_MUTE", updateVoiceState);

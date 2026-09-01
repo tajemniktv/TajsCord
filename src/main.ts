@@ -6,7 +6,6 @@ import "./protocol.js";
 import { readFileSync } from "node:fs";
 import type { Settings } from "./@types/settings.js";
 import {
-    checkForDataFolder,
     checkIfConfigExists,
     checkIfConfigIsBroken,
     firstRun,
@@ -75,7 +74,6 @@ import { createSetupWindow } from "./setup/main.js";
 import { createSplashWindow } from "./splash/main.js";
 export let settings: Settings;
 export let bypassSetup = false;
-checkForDataFolder();
 checkIfConfigExists();
 app.setAsDefaultProtocolClient("discord");
 app.on("render-process-gone", (_event, _webContents, details) => {
@@ -138,8 +136,6 @@ if (!app.requestSingleInstanceLock() && getConfig("multiInstance") === false) {
     // kill if 2nd instance
     app.quit();
 } else {
-    app.setAppUserModelId("app.legcord.Legcord");
-
     const enableFeatures = new Set(app.commandLine.getSwitchValue("enable-features").split(","));
     const disableFeatures = new Set(app.commandLine.getSwitchValue("disable-features").split(","));
     const enableBlinkFeatures = new Set(app.commandLine.getSwitchValue("enable-blink-features").split(","));

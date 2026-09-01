@@ -14,6 +14,6 @@ function track(payload: { event: string; properties: { enabled: string } }) {
 export function onLoad() {
     const settings = window.legcord.settings.getConfig();
     if (!settings.blockPowerSavingInVoiceChat) return;
-    log("Legcord Power Integration");
+    log("TajsCord Power Integration");
     dispatcher.subscribe("TRACK", track);
 }

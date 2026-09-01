@@ -2,9 +2,10 @@ import type { Configuration } from "electron-builder";
 
 import { applyAppImageSandboxFix } from "./scripts/build/sandboxFix.mjs";
 import debianLicence from "./scripts/spdxLicenceDebianFormat";
+import { APP_IDENTITY } from "./src/common/appIdentity";
 import { ACTION_FRIENDLY_NAMES, EXCLUDED_FROM_SHORTCUTS, ValidActions } from "./src/common/commandDefinitions";
 
-const desktopActions = (exec: "AppRun" | "/opt/Legcord/legcord") =>
+const desktopActions = (exec: "AppRun" | `/opt/${string}/${string}`) =>
     Object.fromEntries(
         (Object.values(ValidActions) as ValidActions[])
             .filter((action) => !EXCLUDED_FROM_SHORTCUTS.includes(action))
@@ -22,11 +23,10 @@ const availableActions = (Object.values(ValidActions) as ValidActions[])
     .join(";");
 
 export const config: Configuration = {
-    appId: "app.legcord.Legcord",
-    productName: "Legcord",
-    // Biome treats electron-builder macro placeholders as template syntax.
-    // biome-ignore lint/suspicious/noTemplateCurlyInString: electron-builder expands these placeholders.
-    artifactName: "Legcord-${version}-${os}-${arch}.${ext}",
+    appId: APP_IDENTITY.appId,
+    productName: APP_IDENTITY.productName,
+    executableName: APP_IDENTITY.executableName,
+    artifactName: APP_IDENTITY.artifactName,
     beforePack: applyAppImageSandboxFix,
     protocols: [
         {
@@ -39,10 +39,10 @@ export const config: Configuration = {
         darkModeSupport: true,
         notarize: true,
         extendInfo: {
-            NSMicrophoneUsageDescription: "Legcord requires access to the microphone to function properly.",
-            NSCameraUsageDescription: "Legcord requires access to the camera to function properly.",
+            NSMicrophoneUsageDescription: `${APP_IDENTITY.productName} requires access to the microphone to function properly.`,
+            NSCameraUsageDescription: `${APP_IDENTITY.productName} requires access to the camera to function properly.`,
             NSAudioCaptureUsageDescription:
-                "Legcord requires access to system audio to share sound during screenshare.",
+                `${APP_IDENTITY.productName} requires access to system audio to share sound during screenshare.`,
             NSCameraUseContinuityCameraDeviceType: true,
             "com.apple.security.device.audio-input": true,
             "com.apple.security.device.camera": true,
@@ -53,11 +53,11 @@ export const config: Configuration = {
     linux: {
         icon: "build/icon.icns",
         target: ["AppImage", "deb", "rpm", "tar.gz"],
-        maintainer: "linux@legcord.app",
+        maintainer: "12156943+tajemniktv@users.noreply.github.com",
         category: "Network",
         desktop: {
             entry: {
-                StartupWMClass: "legcord",
+                StartupWMClass: APP_IDENTITY.packaging.linuxStartupWmClass,
             },
         },
     },
@@ -81,8 +81,8 @@ export const config: Configuration = {
     },
 
     appx: {
-        applicationId: "smartfrigde.Legcord",
-        identityName: "53758smartfrigde.Legcord",
+        applicationId: APP_IDENTITY.packaging.appxApplicationId,
+        identityName: APP_IDENTITY.packaging.appxIdentityName,
         publisher: "CN=EAB3A6D3-7145-4623-8176-D579F573F339",
         publisherDisplayName: "smartfrigde",
         backgroundColor: "white",
@@ -119,9 +119,9 @@ export const config: Configuration = {
             entry: {
                 Actions: availableActions,
             },
-            desktopActions: desktopActions("/opt/Legcord/legcord"),
+            desktopActions: desktopActions(`/opt/${APP_IDENTITY.executableName}/${APP_IDENTITY.executableName}`),
         },
-        fpm: [`${debianLicence()}=/usr/share/doc/legcord/copyright`],
+        fpm: [`${debianLicence()}=/usr/share/doc/${APP_IDENTITY.packageName}/copyright`],
     },
 
     files: [

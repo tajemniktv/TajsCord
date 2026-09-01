@@ -118,7 +118,7 @@ const version = ipcRenderer.sendSync("displayVersion") as string;
     }
     // Do NOT patch RTCRtpSender.setParameters to force high maxBitrate — that fights
     // Discord/WebRTC congestion control and collapses streams to tiny resolutions.
-    console.log("[Legcord] Early WebRTC screenshare SDP patch installed" + (preferHwH264 ? " (H264 CBP→Baseline on local+remote)" : ""));
+    console.log("[TajsCord] Early WebRTC screenshare SDP patch installed" + (preferHwH264 ? " (H264 CBP→Baseline on local+remote)" : ""));
 })();`;
 
     if (document.documentElement) {
@@ -215,7 +215,7 @@ const version = ipcRenderer.sendSync("displayVersion") as string;
 
         // All retries exhausted or non-retryable error — fall back to original ideal constraint
         if (lastErr) {
-            console.warn("[Legcord] Exact deviceId failed, falling back to ideal:", lastErr.name, lastErr.message);
+            console.warn("[TajsCord] Exact deviceId failed, falling back to ideal:", lastErr.name, lastErr.message);
         }
         var fallbackStream = await _origGUM(constraints);
         trackStream(fallbackStream);
@@ -239,7 +239,7 @@ const version = ipcRenderer.sendSync("displayVersion") as string;
 async function load() {
     await sleep(5000).then(() => {
         // Venmic audio injection lives in the Shelter screenshare getDisplayMedia patch.
-        // dirty hack to make clicking notifications focus Legcord
+        // dirty hack to make clicking notifications focus TajsCord
         addScript(`
         (() => {
         const originalSetter = Object.getOwnPropertyDescriptor(Notification.prototype, "onclick").set;
@@ -273,7 +273,7 @@ async function load() {
                 margin-bottom: 15px;
             }
             div[class*="compactInfo"] > span::before {
-                content: "Legcord Version: ${version}";
+                content: "TajsCord Version: ${version}";
                 color: inherit;
                 position: absolute;
                 margin-top: 20px;

@@ -71,7 +71,7 @@ export function isDiscordPopoutUrl(urlString: string): boolean {
 const DEFAULT_ALLOWED_LOCALHOST_WS_PORTS = new Set([1211, 1112, 6888]);
 
 /**
- * Block stray localhost WebSocket probes, except known Legcord/local RPC ports.
+ * Block stray localhost WebSocket probes, except known TajsCord/local RPC ports.
  * Uses URL parsing instead of substring checks on the raw request URL.
  */
 export function isBlockedLocalhostWebSocket(

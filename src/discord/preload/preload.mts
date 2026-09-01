@@ -11,7 +11,7 @@ import "./titlebar.mjs";
 import "./themes.js";
 import "./inviteBackButton.mjs";
 
-console.log("Legcord");
+console.log("TajsCord");
 window.localStorage.setItem("hideNag", "true");
 declare global {
     interface Window {

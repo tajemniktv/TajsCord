@@ -42,7 +42,7 @@ export function SupportBanner() {
                     <DonateIcon /> {store.i18n["supportBanner-donate"]}
                 </button>
 
-                <button type="button" class={classes.infoButton} onClick={openAboutModal} title="About Legcord">
+                <button type="button" class={classes.infoButton} onClick={openAboutModal} title="About TajsCord">
                     <InfoIcon /> {store.i18n["menu-about"]}
                 </button>
             </span>

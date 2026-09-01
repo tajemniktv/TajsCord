@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { app, nativeImage, TouchBar } from "electron";
+import { APP_IDENTITY } from "../common/appIdentity.js";
 import { navigateTo } from "../common/dom.js";
 import { deafenToggle, leaveCall, muteToggle } from "../common/keybindActions.js";
 import { getLang } from "../common/lang.js";
@@ -35,6 +36,7 @@ const undeafenIcon = nativeImage.createFromPath(join(import.meta.dirname, "../",
 const disconnectIcon = nativeImage.createFromPath(join(import.meta.dirname, "../", "/assets/disconnect.png"));
 
 const tempPath = app.getPath("temp");
+const guildsPath = join(tempPath, APP_IDENTITY.temporaryDirectories.touchbarGuilds);
 export function setVoiceState(muteState: boolean, deafenState: boolean) {
     console.log("[Touchbar] Setting voice state");
 
@@ -45,20 +47,19 @@ export function setVoiceState(muteState: boolean, deafenState: boolean) {
 export function importGuilds(array: Array<string>) {
     console.log(tempPath);
     console.log("[Touchbar] Importing guild icons");
-    if (!existsSync(join(tempPath, "/legcordGuilds/"))) {
-        mkdirSync(join(tempPath, "/legcordGuilds/"), { recursive: true });
+    if (!existsSync(guildsPath)) {
+        mkdirSync(guildsPath, { recursive: true });
     }
     array.forEach(async (guild) => {
         const [guildID, guildIcon] = guild.split("/");
         const image = await fetch(`https://cdn.discordapp.com/icons/${guildID}/${guildIcon}.png`);
         const buffer = Buffer.from(await image.arrayBuffer());
-        writeFileSync(join(tempPath, `/legcordGuilds/${guildID}.png`), buffer);
+        writeFileSync(join(guildsPath, `${guildID}.png`), buffer);
     });
     refreshGuilds();
 }
 
 function refreshGuilds() {
-    const guildsPath = join(tempPath, "/legcordGuilds/");
     const guildFiles = readdirSync(guildsPath);
     guildFiles.forEach((file) => {
         guildItems.push(

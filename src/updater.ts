@@ -1,12 +1,9 @@
 import { platform } from "node:os";
 import type { AllPublishOptions } from "builder-util-runtime";
 import { AppImageUpdater, DebUpdater, MacUpdater } from "electron-updater";
+import { APP_IDENTITY } from "./common/appIdentity.js";
 
-const updateProvider: AllPublishOptions = {
-    provider: "github",
-    repo: "Legcord",
-    owner: "Legcord",
-};
+const updateProvider: AllPublishOptions = APP_IDENTITY.updateProvider;
 
 if (platform() === "darwin") {
     const autoUpdater = new MacUpdater(updateProvider);

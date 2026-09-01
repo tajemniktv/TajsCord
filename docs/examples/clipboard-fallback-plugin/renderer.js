@@ -1,9 +1,9 @@
 /**
- * Legcord Clipboard Fallback
+ * TajsCord Clipboard Fallback
  *
  * Discord's web UI uses navigator.clipboard.writeText for actions such as
  * "Copy User ID" and "Copy Message Link", and navigator.clipboard.write for
- * richer clipboard payloads such as images. In some Legcord/Electron/macOS
+ * richer clipboard payloads such as images. In some TajsCord/Electron/macOS
  * combinations Chromium rejects those calls because the document is not focused
  * or the clipboard permission is not granted, leaving the clipboard unchanged.
  *

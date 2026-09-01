@@ -1,13 +1,13 @@
-# Legcord Plugin System
+# TajsCord Plugin System
 
-Legcord now supports filesystem plugins loaded from:
+TajsCord now supports filesystem plugins loaded from:
 
 `<userData>/plugins/<plugin-id>/`
 
 Each plugin can provide separate runtime entries for:
 
 - `main` (Electron main process)
-- `preload` (Legcord preload context)
+- `preload` (TajsCord preload context)
 - `renderer` (Discord page context)
 
 ## Manifest
@@ -49,7 +49,7 @@ Optional fields:
 - `"1.3.x"` (any patch in `1.3`)
 - `"*"` (all versions)
 
-If the running Legcord version does not match, the plugin is marked incompatible and cannot be enabled/loaded.
+If the running TajsCord version does not match, the plugin is marked incompatible and cannot be enabled/loaded.
 Plugins are disabled by default until explicitly enabled in the Plugins settings page.
 
 ## Lifecycle
@@ -124,7 +124,7 @@ To test it:
 
 1. Copy `docs/examples/hello-plugin` into your runtime plugins directory:
    - `<userData>/plugins/hello-plugin`
-2. Restart Legcord or use the Plugins settings page:
+2. Restart TajsCord or use the Plugins settings page:
    - enable/disable
    - reload
 3. Open DevTools and watch for `[Plugin:hello-plugin]` logs.
