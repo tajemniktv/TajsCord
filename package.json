@@ -47,7 +47,7 @@
         "babel-preset-solid": "^1.9.12",
         "electron": "43.2.0",
         "electron-builder": "26.15.7",
-        "lucide-solid": "^1.26.0",
+        "lucide-solid": "^1.37.0",
         "monaco-editor": "0.56.0",
         "rolldown": "1.2.0",
         "rollup-plugin-copy": "^3.5.0",
